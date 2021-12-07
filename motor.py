@@ -31,9 +31,9 @@ class Motor:
     time.sleep(2)
   
   def forwards(self):
-    while time() < 3:
-      for i in range(0,4):
-        self.motors[i].ChangeDutyCycle(100)
+    for i in range(0,4):
+      self.motors[i].ChangeDutyCycle(100)
+      time.sleep(5)
       #if distance < 5:
         #buzzer
         #self.stop() 
