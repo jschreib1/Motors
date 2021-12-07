@@ -4,7 +4,7 @@ GPIO.setmode(GPIO.BCM)
 pwmPin = 16
 pin2 = 20
 GPIO.setup(pwmPin, GPIO.OUT)
-GPIO.setip(pin2, GPIO.OUT)
+GPIO.setup(pin2, GPIO.OUT)
 
 dcMin = 0
 dcMax = 100
