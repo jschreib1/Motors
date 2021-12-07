@@ -4,7 +4,7 @@ import time
 
 dc = Motor()
 for i in range(0,4):
-  dc.motors.start(0)
+  dc.motors[i].start(0)
 
 while True:
   dc.forwards()
