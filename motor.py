@@ -8,11 +8,11 @@ for i in range(0,4):
 class Motor:
   def __init__(self):
     self.f = 50
-    self.motors = [self.motor1, self.motor2, self.motor3, self.motor4]
     self.motor1 = GPIO.PWM(pwmPin[0], self.f)
     self.motor2 = GPIO.PWM(pwmPin[1], self.f)
     self.motor3 = GPIO.PWM(pwmPin[2], self.f)
     self.motor4 = GPIO.PWM(pwmPin[3], self.f)
+    self.motors = [self.motor1, self.motor2, self.motor3, self.motor4]
 
   
   
