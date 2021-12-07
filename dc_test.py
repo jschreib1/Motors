@@ -14,7 +14,7 @@ pwm.start(0)
 pwm2.start(0)
 try:
   while True:
-    pwm.ChangeDutyCycle(50)
+    pwm.ChangeDutyCycle(100)
     pwm2.ChangeDutyCycle(100)
     time.sleep(0.02)
 except KeyboardInterrupt:
