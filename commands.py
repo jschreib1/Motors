@@ -6,6 +6,9 @@ dc = Motor()
 for i in range(0,4):
   dc.motors.start(0)
 
+while True:
+  dc.forwards()
+'''
 data = ['Data']
 if data[0] = 'Left':
   dc.left()
@@ -20,3 +23,4 @@ elif data[0] = "Forward":
 
 elif data[0] = "Backward":
   dc.backwards()
+  '''

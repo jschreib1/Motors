@@ -33,7 +33,7 @@ class Motor:
   def forwards(self):
     while time() < 3:
       for i in range(0,4):
-        self.motors[i].ChangeDutyCycle(50)
+        self.motors[i].ChangeDutyCycle(100)
       #if distance < 5:
         #buzzer
         #self.stop() 
