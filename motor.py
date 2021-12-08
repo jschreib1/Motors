@@ -1,12 +1,15 @@
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
+
+#Assign pins and set as output
 pwmPin = [12,16,20,21]
 for i in range(0,4):
   GPIO.setup(pwmPin[i], GPIO.OUT)
 
 class Motor:
   def __init__(self):
+    #Set up PWM for each motor
     self.f = 50
     self.motor1 = GPIO.PWM(pwmPin[0], self.f)
     self.motor2 = GPIO.PWM(pwmPin[1], self.f)
@@ -14,7 +17,9 @@ class Motor:
     self.motor4 = GPIO.PWM(pwmPin[3], self.f)
     self.motors = [self.motor1, self.motor2, self.motor3, self.motor4]
 
-  
+  def stop(self):
+    for i in range(0,4):
+      self.motors[i].ChangeDutyCycle(0) #stop motors
   
   def left(self):
     for i in range(0,2):
@@ -33,16 +38,7 @@ class Motor:
   def forwards(self):
     for i in range(0,4):
       self.motors[i].ChangeDutyCycle(100)
-      time.sleep(5)
-      #if distance < 5:
-        #buzzer
-        #self.stop() 
-      
-  def backwards(self):
-    while time() < 3:
-      for i in range(0,4):
-        self.motors[i].ChangeDutyCycle(-50)
-  
-  def stop(self):
-    for i in range(0,4):
-      self.motors[i].ChangeDutyCycle(0)
+    #if rain == 'yes':
+      #servo code
+    time.sleep(5)
+    self.stop() 
