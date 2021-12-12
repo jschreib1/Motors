@@ -7,12 +7,14 @@ import time
 TRIG = 17
 ECHO = 27
 Buzzer = 22
+D = 4
 
 #Set GPIO pins as inputs/outputs
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 GPIO.setup(Buzzer, GPIO.OUT)
+GPIO.setup(D,GPIO.IN)
 
 #Instantiate Motor Class
 dc = Motor()
@@ -21,8 +23,6 @@ for i in range(0,4):
 
 try:
   while True:
-    dc.forwards()
-    '''
     GPIO.output(TRIG, 0)
     time.sleep(0.000002)
 
@@ -37,10 +37,13 @@ try:
       received = time.time()
 
     timepassed = received - sent
+    global distance
     distance = timepassed * (343/2) * 100
 
     print('Distance: %.2f' % distance)
     time.sleep(0.3)
+
+    rain = GPIO.input(D)
 
     while distance > 10:
       GPIO.output(Buzzer, GPIO.LOW)
@@ -56,13 +59,23 @@ try:
 
       elif Dir == "F":
         dc.forwards()
+      
+      else:
+        pass
     
     dc.stop()
-    GPIO.output(Buzzer, GPIO.HIGH)
-    time.sleep(0.5)
-    GPIO.output(Buzzer, GPIO.LOW)
-    time.sleep(0.5)
-'''
+    if distance < 10:
+      for i in range(0,5): 
+        GPIO.output(Buzzer, GPIO.HIGH)
+        time.sleep(0.5)
+        GPIO.output(Buzzer, GPIO.LOW)
+        time.sleep(0.5)
+    if rain == 0:
+      dc.wiper()
+    
+    letter = 0;
+    with open('index.txt', 'w') as f:
+      f.write(str(letter))
 except KeyboardInterrupt:
   print('shutting down')
   GPIO.cleanup()
