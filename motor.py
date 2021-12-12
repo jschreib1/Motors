@@ -25,7 +25,6 @@ class Motor:
     self.motor3 = GPIO.PWM(pwmPin[2], self.f)
     self.motor4 = GPIO.PWM(pwmPin[3], self.f)
     self.motors = [self.motor1, self.motor2, self.motor3, self.motor4]
-    self.distance
     self.servom = GPIO.PWM(servo, self.f)
     
 
@@ -35,20 +34,20 @@ class Motor:
   
   def left(self):
     for i in range(0,2):
-      self.motors[i].ChangeDutyCycle(25)
-    for i in range(2,4):
       self.motors[i].ChangeDutyCycle(50)
+    for i in range(2,4):
+      self.motors[i].ChangeDutyCycle(75)
     time.sleep(2)
 
   def right(self):
     for i in range(0,2):
-      self.motors[i].ChangeDutyCycle(50)
+      self.motors[i].ChangeDutyCycle(75)
     for i in range (2,4):
-      self.motors[i].ChangeDutyCycle(25)
+      self.motors[i].ChangeDutyCycle(50)
     time.sleep(2)
   
   def forwards(self):
-    while time.time() < 5 and self.distance > 10:
+    while time.time() < 5 and distance > 10:
       for i in range(0,4):
         self.motors[i].ChangeDutyCycle(100)
       GPIO.output(TRIG, 0)
